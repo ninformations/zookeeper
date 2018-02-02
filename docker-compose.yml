@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  leader:
+    build: .
+    networks:
+      - zookeeper
+  follower:
+    build: .
+    environment:
+      - ZK=leader
+    links:
+      - leader
+    networks:
+      - zookeeper
+
+networks:
+  zookeeper:
+  
